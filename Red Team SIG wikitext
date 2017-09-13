@@ -44,6 +44,8 @@ It’s from this Red-vs-Blue concept that the Fedora Red Team draws its naming i
 
 Container images for discrete cyber tools may have a wider impact. See the section below on Red Container.
 
+This SIG will collaborate with the Security Lab spin wherever appropriate.
+
 === Tooling ===
 FRT will make original tools, starting with those listed below.
 
@@ -61,14 +63,14 @@ The exploit curation process requires FRT testers to:
 This project will initially curate CentOS vulnerabilities. CentOS CVEs and RHEL CVEs are mostly the same, and Fedora CVE mapping is more difficult than querying the Security Data API.
 
 ==== Fedora Security Data API ====
-Fedora [https://github.com/fedoraredteam/security-data-api Security Data API] provides CVE mappings and security data a-la the Red Hat Security Data API.
+Fedora [https://github.com/fedoraredteam/security-data-api Security Data API] provides CVE mappings and security data a la the Red Hat Security Data API.
 
 ==== FCTL ====
-Fedora [https://github.com/fedoraredteam/cyber-test-lab Cyber Test Lab] is an open source implementation of the Cyber-ITL dynamic analysis approach. Originally described at Def Con 24, the Cyber-ITL examines disassembled binaries for complexity, "application armoring," developer hygene, and susceptibility to fuzzing.
+Fedora [https://github.com/fedoraredteam/cyber-test-lab Cyber Test Lab] is an open source implementation of the [http://cyber-itl.org Cyber-ITL] dynamic analysis approach. Originally [https://blog.jasoncallaway.com/2016/11/02/cyber-itl-round-up/ described at Def Con 24], the Cyber-ITL examines disassembled binaries for complexity, "application armoring," developer hygene, and susceptibility to fuzzing.
 
 Aside from the obvious benefits of bug hunting at scale, the Cyber-ITLs reports will probably be used to quantify software risk and enable a burgeoning cyber insurance industry.
 
-At this year’s Def Con 25, the Cyber-ITL provided an update including a histogram of the latest RHEL 7 AMI’s security performance. While RHEL’s performance wasn’t any worse than other Linuxes -- it was actually slightly better -- the results are not repeatable.
+At Def Con 25, the Cyber-ITL provided an update including a histogram of the latest RHEL 7 AMI’s security performance. While RHEL’s performance wasn’t any worse than other Linuxes -- it actually appeared to be slightly better -- the results are not repeatable.
 
 The Fedora Cyber Test Lab (FCTL) will endeavor to recreate the Cyber-ITL’s approach in an open source, repeatable fashion. The initial release of the FCTL tooling will include:
 
@@ -76,10 +78,7 @@ The Fedora Cyber Test Lab (FCTL) will endeavor to recreate the Cyber-ITL’s app
 * Branch frequency
 * Hardening features as identified by hardening-check(1)
 * Known-bad functions
-** Note: without the Cyber-ITLs mass fuzzing results, we have no way of scoring
-functions in terms of “badness.” Instead we’ll track the presence or absence of
-functions on a bad list and sum the hits. This is not as high-fidelity as the
-Cyber-ITL’s approach, but it’s a start.
+** Note: without the Cyber-ITLs mass fuzzing results, we have no way of scoring functions in terms of “badness.” Instead we’ll track the presence or absence of functions on a bad list and sum the hits. This is not as high-fidelity as the Cyber-ITL’s approach, but it’s a start.
 
 The FCTL will make its findings open source, and provide Ansible test harnesses to recreate those findings. While the FRT will focus on RHEL, CentOS, and Fedora, the project will be open and receptive to community contributions for other OSes.
 
@@ -90,11 +89,11 @@ The [https://github.com/fedoraredteam/red-container Red Container] project will 
 
 Initial focus will be given to pentesting tools not already packaged in the Fedora repos or in EPEL such as:
 
-* Metasploit Framework
-* nikto
-* cewl
-* enum4linux
-* nbtscan
+* [https://github.com/rapid7/metasploit-framework Metasploit Framework]
+* [https://github.com/sullo/nikto nikto]
+* [https://digi.ninja/projects/cewl.php cewl]
+* [https://labs.portcullis.co.uk/tools/enum4linux/ enum4linux]
+* [http://www.unixwiz.net/tools/nbtscan.html nbtscan]
 
 Other tools will be added after that, including a controlled interface to install package groups similar to those of Kali, and to invoke those tools from the CLI without having to call `docker run`.
 
@@ -107,7 +106,7 @@ The [http://pentest-standard.org PTES] project is very useful, although outdated
 === Reference Architectures ===
 A common thread in US DoD cyber procurements have been so-called “cyber ranges.” While the concept of a cyber range has yet to be officially defined by NIST, it can be thought of as a cyber analog to kinetic weapons ranges. New machine guns aren’t developed and tested near civilians, they’re developed in special labs and tested in safe, specialized locations. Cyber weapons and defensive technologies require their own safe places. We call those cyber ranges.
 
-Technologies like RDO, Origin, ManageIQ, and Ansible fit perfectly into the problem space of cyber ranges, the gross functions for which could be described as:
+Technologies like [https://www.rdoproject.org RDO], [https://www.openshift.org Origin], [http://manageiq.org ManageIQ], and Ansible fit perfectly into the problem space of cyber ranges, the gross functions for which could be described as:
 
 * '''Training and Simulation''': practicing Red Team and Blue Team operations
 * '''Analysis''': reverse engineering, sim/stim, C2 hijacking, attribution
@@ -116,6 +115,14 @@ Technologies like RDO, Origin, ManageIQ, and Ansible fit perfectly into the prob
 Building an environment that can support these features is very much an “infrastructure problem,” but it spans multiple project upstreams -- RDO, Origin, ManageIQ, etc. It makes sense for this SIG to be the fulcrum for cyber range designs, white papers, reference architectures, etc.
 
 Red Team SIG reference architectures will be maintained under [https://github.com/fedoraredteam/reference-architectures this FRT GitHub project].
+
+== How to contribute ==
+Want to join the Fedora Red Team? Great! Here are a few ways to dive in:
+
+* Join us for our monthly meeting on #fedora-security on Freenode IRC
+* Email us your thoughts at [mailto:security@lists.fedoraproject.org security@lists.fedoraproject.org]
+* Hit us up with pull requests on any of the [https://github.com/fedoraredteam GitHub projects]
+
 
 [[Category:SIGs]]
 [[Category:Fedora special-interest groups]]
