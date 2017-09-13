@@ -1,68 +1,56 @@
-== Red Team SIG ==
-The Fedora Red Team is Red Hat's upstream cybersecurity community. This SIG is
-the community focal point for offensive tooling, exploit curation, standards,
-and reference architectures.
+= Fedora Red Team =
+The Fedora Red Team (FRT) is Red Hat's upstream cybersecurity community. This SIG is the community focal point for offensive tooling, exploit curation, standards, and reference architectures.
 
-=== Mission ===
-To be the catalyst in the enterprise Linux community that enables Computer
-Network Operations, the open source way.
-
-=== Members ===
+== Members ==
 * [https://fedoraproject.org/wiki/User:Jasoncallaway Jason Callaway]
 * [https://fedoraproject.org/wiki/User:K6n Ken Evensen]
-* Nick Sabine
+* [https://fedoraproject.org/wiki/User:Nsabine Nick Sabine]
+
+== Team Communications ==
+Get in contact with the SIG:
+
+* '''IRC''': #fedora-security
+* '''List''': security@lists.fedoraproject.org
+
+== SIG Meetings ==
+First Friday of every month at 10am US/Eastern in #fedora-security.
+
+== Mission ==
+
+=== Mission Statement ===
+
+To be the catalyst in the enterprise Linux community that enables Computer Network Operations, the open source way.
 
 === Defining the term "cyber" ===
 Ther term "cyber" itself is somewhat overloaded.
 
 For purposes of this SIG, let the term “cyber” be defined as:
 
-* Being rooted in the Greek word, κυβερνάω (kubernao), literally, to steer or
-govern. Note that this is the same root word for Kubernetes.
-* Based on the term “cybernetics,” which was coined by Norbert Wiener during
-WWII, and later morphed into “cyberspace,” which was popularized by William
-Gibson’s Neuromancer. Justice Department attorney Michael Vatis, in need of a
-term to describe the new domain, referred to Neuromancer during the development
-of the Marsh Report.
-* Defined as the “fifth domain of warfare” by the US Department of Defense
-(the others being land, sea, air, and space)
-* Used as an umbrella term to describe the Computer Network Operations (CNO)
-triplet of Computer Network Defense (CND), Computer Network Exploitation (CNE),
-and Computer Network Attack (CNA)
+* Being rooted in the Greek word, κυβερνάω (kubernao), literally, to steer or govern. Note that this is the same root word for Kubernetes.
+* Based on the term “cybernetics,” which was coined by Norbert Wiener during WWII, and later morphed into “cyberspace,” which was popularized by William Gibson’s Neuromancer. Justice Department attorney Michael Vatis, in need of a term to describe the new domain, referred to Neuromancer during the development of the [https://www.fas.org/sgp/library/pccip.pdf Marsh Report]. See [https://blog.jasoncallaway.com/2016/10/27/origins-of-the-term-cyber/ this blog post] for additional information.
+* Defined as the “fifth domain of warfare” by the US Department of Defense (the others being land, sea, air, and space)
+* Used as an umbrella term to describe the Computer Network Operations (CNO) triplet of Computer Network Defense (CND), Computer Network Exploitation (CNE), and Computer Network Attack (CNA)
 
-Where terms like security and infosec are broad and refer to a branch of
-computer science, cyber should be understood to refer to the antagonistic
-world of nation state electronic warfare, Advanced Persistent Threat (APT)
-actors, and cyber criminals.
+Where terms like security and infosec are broad and refer to a branch of computer science, cyber should be understood to refer to the antagonistic world of nation state electronic warfare, Advanced Persistent Threat (APT) actors, and cyber criminals.
 
-In this context, Red Teams are “friendlies” who attempt to break systems being
-defended by the Blue Teams in order to identify and remediate vulnerabilities.
-It’s from this Red-vs-Blue concept that the Fedora Red Team draws its naming
-inspiration.
+=== Naming Rationale ===
+
+In the context defined above, Red Teams are “friendlies” who attempt to break systems being defended by the Blue Teams in order to identify and remediate vulnerabilities. For those interested in the concept of "red teaming," refer to Micha Zenko's book, [https://www.amazon.com/Red-Team-Succeed-Thinking-Enemy-ebook/dp/B012271LJM Red Team: How to Succeed By Thinking Like the Enemy].
+
+It’s from this Red-vs-Blue concept that the Fedora Red Team draws its naming inspiration.
 
 === Relationship with Fedora Security Lab ===
-Fedora Security Lab is great. Packaging security tools is an important task,
-but with the advent and adoption rate of the Open Container Image Format,
-rpm-packaged tools have become less critical.
+[https://fedoraproject.org/wiki/Security_Lab Fedora Security Lab] is a spin of Fedora that focuses on packaging security tools. Packaging of these tools is an important task, but with the advent and adoption rate of the Open Container Image Format, rpm packaging has become less critical.
 
-Container images for discrete cyber tools may have a wider impact. See the
-section below on Red Container.
+Container images for discrete cyber tools may have a wider impact. See the section below on Red Container.
 
 === Tooling ===
-FRT will make original tools, starting with the three listed below.
+FRT will make original tools, starting with those listed below.
 
 ==== ELEM ====
-Enterprise Linux Exploit Mapper (ELEM) uses the yum security plugin and Red Hat
-Security Data API to map CVEs to known exploits in the wild. The initial data
-source for exploits will be the Exploit Database, but other data sources can be
-added later.
+[https://github.com/fedoraredteam/elem Enterprise Linux Exploit Mapper (ELEM)] uses the yum security plugin and Red Hat Security Data API to map CVEs to known exploits in the wild. The initial data source for exploits will be the Exploit Database, but other data sources can be added later.
 
-An important aspect of this project is “exploit curation.” Many vulnerabilities
-discovered and documented via CVE contain theoretical vulnerabilities. These
-CVEs use language like “this vulnerability may permit an attacker to execute
-arbitrary code.” Other vulnerabilities are associated with exploits that have
-been tested and are known to permit remote code execution, local privilege
-escalation, or other classes of exploits.
+An important aspect of this project is “exploit curation.” Many vulnerabilities discovered and documented via CVE contain theoretical vulnerabilities. These CVEs use language like “this vulnerability may permit an attacker to execute arbitrary code.” Other vulnerabilities are associated with exploits that have been tested and are known to permit remote code execution, local privilege escalation, or other classes of exploits.
 
 The exploit curation process requires FRT testers to:
 
@@ -70,35 +58,19 @@ The exploit curation process requires FRT testers to:
 * Test those exploits on vulnerable systems
 * Document which exploits are able to leverage the vulnerability
 
-This project will initially curate CentOS vulnerabilities. CentOS CVEs and
-RHEL CVEs are mostly the same, and Fedora CVE mapping is more difficult than
-querying the Security Data API.
-
-(New 9/12 idea) Could use output to influence NVD scoring after the fact. “CVE
-Refresh,” perhaps. Automated comparison of CVE NVD score at time of issue
-compared to curated vulnerability and need to re-score.
+This project will initially curate CentOS vulnerabilities. CentOS CVEs and RHEL CVEs are mostly the same, and Fedora CVE mapping is more difficult than querying the Security Data API.
 
 ==== Fedora Security Data API ====
-Fedora CVE mappings and security data a-la the Red Hat Security Data API.
+Fedora [https://github.com/fedoraredteam/security-data-api Security Data API] provides CVE mappings and security data a-la the Red Hat Security Data API.
 
 ==== FCTL ====
-Fedora Cyber Test Lab is an open source implementation of the Cyber-ITL dynamic
-analysis approach. Originally described at Def Con 24, the Cyber-ITL examines
-disassembled binaries for complexity, "application armoring," developer hygene,
-and susceptibility to fuzzing.
+Fedora [https://github.com/fedoraredteam/cyber-test-lab Cyber Test Lab] is an open source implementation of the Cyber-ITL dynamic analysis approach. Originally described at Def Con 24, the Cyber-ITL examines disassembled binaries for complexity, "application armoring," developer hygene, and susceptibility to fuzzing.
 
-Aside from the obvious benefits of bug hunting at scale, the Cyber-ITLs reports
-will probably be used to quantify software risk and enable a burgeoning cyber i
-nsurance industry.
+Aside from the obvious benefits of bug hunting at scale, the Cyber-ITLs reports will probably be used to quantify software risk and enable a burgeoning cyber insurance industry.
 
-At this year’s Def Con 25, the Cyber-ITL provided an update including a
-histogram of the latest RHEL 7 AMI’s security performance. While RHEL’s
-performance wasn’t any worse than other Linuxes -- it was actually slightly
-better -- the results are not repeatable.
+At this year’s Def Con 25, the Cyber-ITL provided an update including a histogram of the latest RHEL 7 AMI’s security performance. While RHEL’s performance wasn’t any worse than other Linuxes -- it was actually slightly better -- the results are not repeatable.
 
-The Fedora Cyber Test Lab (FCTL) will endeavor to recreate the Cyber-ITL’s
-approach in an open source, repeatable fashion. The initial release of the FCTL
-tooling will include:
+The Fedora Cyber Test Lab (FCTL) will endeavor to recreate the Cyber-ITL’s approach in an open source, repeatable fashion. The initial release of the FCTL tooling will include:
 
 * Cyclomatic complexity
 * Branch frequency
@@ -109,22 +81,14 @@ functions in terms of “badness.” Instead we’ll track the presence or absen
 functions on a bad list and sum the hits. This is not as high-fidelity as the
 Cyber-ITL’s approach, but it’s a start.
 
-The FCTL will make its findings open source, and provide Ansible test harnesses
-to recreate those findings. While the FRT will focus on RHEL, CentOS, and
-Fedora, the project will be open and receptive to community contributions for
-other OSes.
+The FCTL will make its findings open source, and provide Ansible test harnesses to recreate those findings. While the FRT will focus on RHEL, CentOS, and Fedora, the project will be open and receptive to community contributions for other OSes.
 
 ==== Red Container ====
-Adoption of the Open Container Image Format is changing the packaging landscape.
-RPMs are still useful, but getting community adoption and participation in a
-containerization effort is easier than that of a packaging effort.
+Adoption of the Open Container Image Format is changing the packaging landscape. RPMs are still useful, but getting community adoption and participation in a containerization effort is easier than that of a packaging effort.
 
-The Red Container project will work on containerizing the popular tooling in
-Kali Linux so that they can be run from any Linux distro, including Fedora,
-CentOS, and RHEL.
+The [https://github.com/fedoraredteam/red-container Red Container] project will work on containerizing the popular tooling in Kali Linux so that they can be run from any Linux distro, including Fedora, CentOS, and RHEL.
 
-Initial focus will be given to pentesting tools not already packaged in the
-Fedora repos or in EPEL such as:
+Initial focus will be given to pentesting tools not already packaged in the Fedora repos or in EPEL such as:
 
 * Metasploit Framework
 * nikto
@@ -135,24 +99,24 @@ Fedora repos or in EPEL such as:
 Other tools will be added after that, including a controlled interface to install package groups similar to those of Kali, and to invoke those tools from the CLI without having to call `docker run`.
 
 === Exploit Curation ===
-The Fedora Red Team will test vulnerability / exploit combinations and document the ones that can be leveraged by attackers. This curation will take place under the ELEM project, see above.
+The Fedora Red Team will test vulnerability / exploit combinations and document the ones that can be leveraged by attackers. This curation will take place under the [https://github.com/fedoraredteam/elem ELEM] project, see above.
 
 === Pen Testing Execution Standard (PTES) ===
-The PTES project is very useful, although outdated. The FRT plans to either re-invigorate the project, or fork it entirely, and to use it as our process and documentation standard.
+The [http://pentest-standard.org PTES] project is very useful, although outdated. The FRT plans to either re-invigorate the project, or [https://github.com/fedoraredteam/frt-pentest-standard fork it entirely], and to use it as our process and documentation standard. Stay tuned for updates.
 
 === Reference Architectures ===
-Red Hat’s NAPS geo has been successful selling so-called “cyber ranges.” While the concept of a cyber range has yet to be officially defined by NIST, it can be thought of as a cyber analog to kinetic weapons ranges. New machine guns aren’t developed and tested near civilians, they’re developed in special labs and tested in safe, specialized locations. Cyber weapons and defensive technologies require their own safe places. We call those cyber ranges.
+A common thread in US DoD cyber procurements have been so-called “cyber ranges.” While the concept of a cyber range has yet to be officially defined by NIST, it can be thought of as a cyber analog to kinetic weapons ranges. New machine guns aren’t developed and tested near civilians, they’re developed in special labs and tested in safe, specialized locations. Cyber weapons and defensive technologies require their own safe places. We call those cyber ranges.
 
-Red Hat technologies like OpenStack, OpenShift, CloudForms, and Ansible fit perfectly into the problem space of cyber ranges, the gross functions for which could be described as:
+Technologies like RDO, Origin, ManageIQ, and Ansible fit perfectly into the problem space of cyber ranges, the gross functions for which could be described as:
 
-* Training and Simulation: practicing Red Team and Blue Team operations
-* Analysis: reverse engineering, sim/stim, C2 hijacking, attribution
-* Research & Development: building new offensive and defensive capabilities
+* '''Training and Simulation''': practicing Red Team and Blue Team operations
+* '''Analysis''': reverse engineering, sim/stim, C2 hijacking, attribution
+* '''Research & Development''': building new offensive and defensive capabilities
 
-Building an environment that can support these features is very much an “infrastructure problem,” but it spans multiple project upstreams -- RDO, Origin, ManageIQ, etc. It makes sense for the Fedora Project to be the fulcrum for cyber range designs, white papers, reference architectures, etc.
+Building an environment that can support these features is very much an “infrastructure problem,” but it spans multiple project upstreams -- RDO, Origin, ManageIQ, etc. It makes sense for this SIG to be the fulcrum for cyber range designs, white papers, reference architectures, etc.
 
-=== Team Communications ===
-Get in contact with the SIG:
+Red Team SIG reference architectures will be maintained under [https://github.com/fedoraredteam/reference-architectures this FRT GitHub project].
 
-* IRC: #fedora-security
-* List: security@lists.fedoraproject.org
+[[Category:SIGs]]
+[[Category:Fedora special-interest groups]]
+[[Category:Cyber]]
